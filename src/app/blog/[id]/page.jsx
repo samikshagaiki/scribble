@@ -1,63 +1,89 @@
 import Link from "next/link"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { CalendarDays, User, ArrowLeft } from "lucide-react"
+import { CalendarDays, User, Heart, Eye, MessageCircle, Clock } from "lucide-react"
 import CommentsSection from "@/components/CommentsSection"
 
-// Dummy blog posts data (same as homepage)
 const blogPosts = [
   {
     id: "1",
-    title: "Getting Started with Next.js 14",
+    title: "The Ultimate Guide to Modern Web Development",
     excerpt:
-      "Learn how to build modern web applications with Next.js 14 and its latest features including App Router and Server Components.",
-    content: `Next.js 14 brings exciting new features that make building web applications faster and more efficient. In this comprehensive guide, we'll explore the latest additions to the Next.js ecosystem and how they can improve your development workflow.
+      "Discover the latest trends, tools, and techniques that are shaping the future of web development in 2024.",
+    content: `Modern web development has evolved dramatically over the past few years. In this comprehensive guide, we'll explore the cutting-edge technologies and methodologies that are defining the future of how we build for the web.
 
-## What's New in Next.js 14
+## The Evolution of Web Development
 
-The latest version of Next.js introduces several groundbreaking features:
+The landscape of web development continues to shift at a rapid pace. From the rise of JAMstack architecture to the adoption of edge computing, developers today have more powerful tools than ever before.
 
-### App Router Stability
-The App Router, introduced as experimental in Next.js 13, is now stable and production-ready. This new routing system provides better performance, improved developer experience, and more intuitive file-based routing.
+## Key Trends Shaping 2024
 
-### Server Components by Default
-Server Components are now the default in the App Router, allowing you to build faster applications with better SEO and reduced JavaScript bundle sizes.
+Server-Side Rendering Renaissance: The return to server-side rendering through frameworks like Next.js and Nuxt.js has brought significant performance improvements and better SEO capabilities.
 
-### Improved Performance
-Next.js 14 includes significant performance improvements, including faster builds, optimized bundling, and better runtime performance.
+Edge Computing Integration: Moving computation closer to users through edge functions and CDN-based processing is revolutionizing how we think about application architecture.
 
-## Getting Started
+AI-Powered Development: Tools like GitHub Copilot and ChatGPT are transforming the development workflow, making developers more productive than ever.
 
-To create a new Next.js 14 project, run:
+## Modern Framework Ecosystem
 
-\`\`\`bash
-npx create-next-app@latest my-app
-cd my-app
-npm run dev
-\`\`\`
+## React and Beyond
 
-This will set up a new Next.js project with all the latest features enabled by default.
+React continues to dominate the frontend landscape, but new contenders like Svelte and Solid.js are gaining traction with their innovative approaches to reactivity and performance.
+
+## Full-Stack Solutions
+
+Frameworks like Next.js, Remix, and SvelteKit are blurring the lines between frontend and backend development, offering integrated solutions for modern web applications.
+
+## Performance and User Experience
+
+## Core Web Vitals
+
+Google's Core Web Vitals have become essential metrics for web performance, focusing on:
+
+- Largest Contentful Paint (LCP)
+- First Input Delay (FID)
+- Cumulative Layout Shift (CLS)
+
+## Progressive Enhancement
+
+Building applications that work for everyone, regardless of their device or connection speed, remains a fundamental principle of good web development.
+
+## The Future of Web Development
+
+As we look ahead, several technologies are poised to reshape how we build for the web:
+
+- WebAssembly: Bringing near-native performance to web applications
+- Web Components: Creating truly reusable UI components
+- **Progressive Web Apps**: Bridging the gap between web and native applications
 
 ## Conclusion
 
-Next.js 14 represents a significant step forward in React-based web development. With its stable App Router, improved performance, and developer-friendly features, it's the perfect time to start your next project with Next.js 14.`,
-    author: "John Doe",
+The future of web development is bright, with new tools and techniques emerging constantly. By staying informed about these trends and continuously learning, developers can build better, faster, and more accessible web experiences for users around the world.`,
+    author: "Sarah Johnson",
     date: "2024-01-15",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=600&fit=crop",
-    category: "Web Development",
+    image: "/placeholder.svg?height=400&width=800",
+    category: "Development",
+    readTime: "8 min read",
+    likes: 156,
+    views: 2847,
     comments: [
       {
         id: "1",
         name: "Alice Johnson",
-        message: "Great article! Very helpful for understanding the new features.",
+        message: "Great article! Very helpful for understanding the new trends in web development.",
         date: "2024-01-16",
       },
       {
         id: "2",
         name: "Bob Wilson",
-        message: "Thanks for the detailed explanation. Looking forward to trying Next.js 14.",
+        message: "Thanks for the detailed explanation. Looking forward to implementing these practices.",
         date: "2024-01-17",
+      },
+      {
+        id: "3",
+        name: "Carol Davis",
+        message: "Excellent overview of the current state of web development. Very comprehensive!",
+        date: "2024-01-18",
       },
     ],
   },
@@ -206,15 +232,12 @@ export default function BlogPost({ params }) {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
-        <div className="text-center">
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-100 flex items-center justify-center">
+        <div className="text-center animate-fade-in">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Post Not Found</h1>
           <p className="text-gray-600 mb-8">The blog post you're looking for doesn't exist.</p>
           <Link href="/">
-            <Button>
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Home
-            </Button>
+
           </Link>
         </div>
       </div>
@@ -222,25 +245,32 @@ export default function BlogPost({ params }) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-100">
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-0 shadow-sm">
+        <div className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center">
-              <Link href="/" className="text-3xl font-bold text-gray-900 hover:text-blue-600">
-                TechBlog
+              <Link
+                href="/"
+                className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent hover:from-purple-700 hover:to-purple-900 transition-all duration-300"
+              >
+                Scribble
               </Link>
-              <span className="ml-2 text-sm text-gray-500">Modern Web Development</span>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <Link href="/" className="text-gray-700 hover:text-blue-600">
+              <Link href="/" className="text-gray-700 hover:text-purple-600 font-medium transition-colors duration-200">
                 Home
               </Link>
-              <Link href="/about" className="text-gray-700 hover:text-blue-600">
+              <Link
+                href="/about"
+                className="text-gray-700 hover:text-purple-600 font-medium transition-colors duration-200"
+              >
                 About
               </Link>
-              <Link href="/contact" className="text-gray-700 hover:text-blue-600">
+              <Link
+                href="/contact"
+                className="text-gray-700 hover:text-purple-600 font-medium transition-colors duration-200"
+              >
                 Contact
               </Link>
             </nav>
@@ -248,70 +278,88 @@ export default function BlogPost({ params }) {
         </div>
       </header>
 
-      {/* Back Button */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        <Link href="/">
-          <Button variant="outline" className="mb-8 bg-transparent">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Home
-          </Button>
-        </Link>
-      </div>
-
-      {/* Article */}
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <Card className="overflow-hidden">
-          {/* Hero Image */}
-          <div className="aspect-video overflow-hidden">
-            <img src={post.image || "/placeholder.svg"} alt={post.title} className="w-full h-full object-cover" />
-          </div>
-
-          <CardHeader className="p-8">
-            <div className="flex items-center justify-between mb-4">
-              <Badge variant="secondary" className="text-sm">
-                {post.category}
-              </Badge>
-              <div className="flex items-center text-sm text-gray-500">
-                <CalendarDays className="w-4 h-4 mr-1" />
-                {new Date(post.date).toLocaleDateString()}
+      <article className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="animate-fade-in-up">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br via-purple-500 to-purple-00 mb-8 shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-600/90 to-transparent"></div>
+            <div className="relative aspect-video overflow-hidden">
+              <img
+                src={post.image || "/placeholder.svg?height=400&width=800&query=modern web development"}
+                alt={post.title}
+                className="w-full h-full object-cover opacity-30"
+              />
+            </div>
+            <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
+              <div className="flex items-center gap-4 mb-4">
+                <Badge className="bg-white/20 text-white border-0 backdrop-blur-sm hover:bg-white/30 transition-colors">
+                  {post.category}
+                </Badge>
+                <div className="flex items-center text-white/90 text-sm">
+                  <Clock className="w-4 h-4 mr-1" />
+                  {post.readTime}
+                </div>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">{post.title}</h1>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center text-white/90">
+                  <User className="w-5 h-5 mr-2" />
+                  <span className="font-medium">By {post.author}</span>
+                  <span className="mx-3">•</span>
+                  <CalendarDays className="w-4 h-4 mr-1" />
+                  <span>{new Date(post.date).toLocaleDateString()}</span>
+                </div>
+                <div className="flex items-center gap-6 text-white/90">
+                  <div className="flex items-center gap-1 hover:text-white transition-colors cursor-pointer">
+                    <Heart className="w-5 h-5" />
+                    <span className="font-medium">{post.likes}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <MessageCircle className="w-5 h-5" />
+                    <span className="font-medium">{post.comments.length}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Eye className="w-5 h-5" />
+                    <span className="font-medium">{post.views}</span>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
 
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">{post.title}</h1>
-
-            <div className="flex items-center text-gray-600">
-              <User className="w-5 h-5 mr-2" />
-              <span>By {post.author}</span>
-            </div>
-          </CardHeader>
-
-          <CardContent className="p-8 pt-0">
+          <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-xl border-0 mb-8">
             <div className="prose prose-lg max-w-none">
               {post.content.split("\n\n").map((paragraph, index) => {
                 if (paragraph.startsWith("##")) {
                   return (
-                    <h2 key={index} className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+                    <h2
+                      key={index}
+                      className="text-3xl font-bold text-gray-900 mt-12 mb-6 bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent"
+                    >
                       {paragraph.replace("## ", "")}
                     </h2>
                   )
                 } else if (paragraph.startsWith("###")) {
                   return (
-                    <h3 key={index} className="text-xl font-semibold text-gray-900 mt-6 mb-3">
+                    <h3 key={index} className="text-2xl font-semibold text-gray-900 mt-8 mb-4">
                       {paragraph.replace("### ", "")}
                     </h3>
                   )
                 } else if (paragraph.startsWith("```")) {
                   return (
-                    <pre key={index} className="bg-gray-100 p-4 rounded-lg overflow-x-auto my-4">
+                    <pre
+                      key={index}
+                      className="bg-gray-900 text-gray-100 p-6 rounded-xl overflow-x-auto my-6 shadow-lg border-0"
+                    >
                       <code className="text-sm">{paragraph.replace(/```\w*\n?/, "").replace(/```$/, "")}</code>
                     </pre>
                   )
                 } else if (paragraph.startsWith("- ")) {
                   const listItems = paragraph.split("\n").filter((item) => item.startsWith("- "))
                   return (
-                    <ul key={index} className="list-disc list-inside space-y-2 my-4">
+                    <ul key={index} className="space-y-3 my-6">
                       {listItems.map((item, itemIndex) => (
-                        <li key={itemIndex} className="text-gray-700">
+                        <li key={itemIndex} className="text-gray-700 leading-relaxed flex items-start">
+                          <span className="w-2 h-2 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                           {item.replace("- ", "")}
                         </li>
                       ))}
@@ -319,8 +367,8 @@ export default function BlogPost({ params }) {
                   )
                 } else if (paragraph.includes("**") && paragraph.includes(":**")) {
                   return (
-                    <p key={index} className="text-gray-700 leading-relaxed my-4">
-                      <strong className="font-semibold text-gray-900">
+                    <p key={index} className="text-gray-700 leading-relaxed my-6">
+                      <strong className="font-semibold text-purple-800">
                         {paragraph.split(":**")[0].replace("**", "")}:
                       </strong>
                       {paragraph.split(":**")[1]}
@@ -328,15 +376,40 @@ export default function BlogPost({ params }) {
                   )
                 } else {
                   return (
-                    <p key={index} className="text-gray-700 leading-relaxed my-4">
+                    <p key={index} className="text-gray-700 leading-relaxed my-6 text-lg">
                       {paragraph}
                     </p>
                   )
                 }
               })}
             </div>
-          </CardContent>
-        </Card>
+          </div>
+
+          <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-2xl p-6 mb-8 border-0 shadow-lg">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-6">
+                <Button
+                  variant="ghost"
+                  className="flex items-center gap-2 text-purple-700 hover:text-purple-800 hover:bg-purple-200/50 border-0 transition-all duration-200"
+                >
+                  <Heart className="w-5 h-5" />
+                  <span className="font-medium">{post.likes} Likes</span>
+                </Button>
+                <div className="flex items-center gap-2 text-purple-700">
+                  <MessageCircle className="w-5 h-5" />
+                  <span className="font-medium">{post.comments.length} Comments</span>
+                </div>
+                <div className="flex items-center gap-2 text-purple-700">
+                  <Eye className="w-5 h-5" />
+                  <span className="font-medium">{post.views} Views</span>
+                </div>
+              </div>
+              <Button className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+                Share Article
+              </Button>
+            </div>
+          </div>
+        </div>
 
         {/* Comments Section */}
         <CommentsSection postId={post.id} initialComments={post.comments} />

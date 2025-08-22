@@ -98,9 +98,9 @@ export default function HomePage() {
       </section>
 
       <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-8xl mx-auto">
           <h3 className="text-3xl font-bold text-gray-900 mb-12 text-center">Latest Articles</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {blogPosts.map((post, index) => (
               <Card
                 key={post.id}
@@ -163,7 +163,7 @@ export default function HomePage() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="border-[#af77fd]/30 text-[#af77fd] hover:bg-[#af77fd] hover:text-white transition-all duration-300 hover:shadow-md bg-transparent"
+                        className="border-[#af77fd]/30 text-purple-600 hover:text-black transition-all duration-300 hover:shadow-md bg-transparent"
                       >
                         Read More
                       </Button>
